@@ -15,7 +15,7 @@ public class HorizontalShip extends Ship {
 
         // instantiate the ship's location
         for (Byte column : this.columns) {
-            this.location.add(new ShipZone(this.row, column));
+            this.location.add(new ShipCell(this.row, column));
         }
     }
 

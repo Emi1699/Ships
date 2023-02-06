@@ -1,7 +1,5 @@
 package gameEntities.ships;
 
-import gameEntities.Zone;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -17,7 +15,7 @@ public class VerticalShip extends Ship {
 
         // instantiate the ship's location
         for (Character row : this.rows) {
-            this.location.add(new ShipZone(row, this.column));
+            this.location.add(new ShipCell(row, this.column));
         }
 
         // useful when printing the position and state of the ship

@@ -1,14 +1,13 @@
 package gameEntities.ships;
 
 import java.util.ArrayList;
-import gameEntities.Zone;
 
 public class Ship {
    private static int shipNumber = 1;
 
    // for each square the ship is on, we must also store that square's state (hit/not hit)
    // when all of a ship's squares are hit, the ship dies
-   protected ArrayList<ShipZone> location = new ArrayList<>();
+   protected ArrayList<ShipCell> location = new ArrayList<>();
    private String name;
 
    // default constructor (will perhaps add random ship generation in here)
@@ -18,7 +17,7 @@ public class Ship {
       Ship.shipNumber += 1;
    }
 
-   public Ship(String name, ArrayList<ShipZone> location) {
+   public Ship(String name, ArrayList<ShipCell> location) {
       this.location = location;
       this.name = name;
 
@@ -31,17 +30,17 @@ public class Ship {
    }
 
    // getter
-   public ArrayList<ShipZone> getLocation() {
+   public ArrayList<ShipCell> getLocation() {
       return location;
    }
 
    // setter
-   public void setLocation(ArrayList<ShipZone> location) {
+   public void setLocation(ArrayList<ShipCell> location) {
       this.location = location;
    }
 
    public boolean isDead() {
-      for (ShipZone shipZone : this.location) {
+      for (ShipCell shipZone : this.location) {
          if (shipZone.alive) {
             return false;
          }
@@ -51,7 +50,7 @@ public class Ship {
    }
 
    public boolean isAlive() {
-      for (ShipZone shipZone : this.location) {
+      for (ShipCell shipZone : this.location) {
          if (shipZone.alive) {
             return true;
          }
