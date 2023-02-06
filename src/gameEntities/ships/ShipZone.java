@@ -1,9 +1,9 @@
-package ships;
+package gameEntities.ships;
 
-import game.Zone;
+import gameEntities.Zone;
 
 public class ShipZone extends Zone {
-    boolean isAlive = true;
+    public boolean alive = true;
 
     public ShipZone(Character row, Byte column) {
         super(row, column);
