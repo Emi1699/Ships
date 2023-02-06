@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
+import ships.Ship;
 
 public class Player {
     String name;
