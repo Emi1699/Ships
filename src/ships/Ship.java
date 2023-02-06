@@ -1,31 +1,33 @@
 package ships;
 
-import java.util.HashMap;
-import game.Coordinates;
+import java.util.ArrayList;
+import game.Zone;
 
 public class Ship {
    // for each square the ship is on, we must also store that square's state (hit/not hit)
    // when all of a ship's squares are hit, the ship dies
-   HashMap<Coordinates, Character> location = new HashMap<>();
+   protected ArrayList<ShipZone> location = new ArrayList<>();
 
-   public String shipLocationToString() {
-      String shipLocation = "" + this.location.keySet().iterator().next().row + " > ";
+   // default constructor (will perhaps add random ship generation in here)
+   public Ship() {}
 
-      for (Coordinates c : this.location.keySet()) {
-//         shipLocation.concat(c.)
-      }
-
-      return shipLocation;
+   public Ship(ArrayList<ShipZone> location) {
+      this.location = location;
    }
 
-   @Override
-   public String toString() {
-      return "ships.Ship is @ location: " + this.location.keySet();
+   // getter
+   public ArrayList<ShipZone> getLocation() {
+      return location;
+   }
+
+   // setter
+   public void setLocation(ArrayList<ShipZone> location) {
+      this.location = location;
    }
 
    public boolean isDead() {
-      for (Coordinates c : this.location.keySet()) {
-         if (this.location.get(c) == 'o') {
+      for (Zone shipZone : this.location) {
+         if (shipZone.isAlive) {
             return false;
          }
       }

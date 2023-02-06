@@ -1,10 +1,11 @@
 package game;
 
-public class Coordinates {
+public class Zone {
     public Character row;
     public Byte column;
+    public boolean isAlive = true;
 
-    public Coordinates(Character row, Byte column) {
+    public Zone(Character row, Byte column) {
         this.column = column;
         this.row = row;
     }
