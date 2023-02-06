@@ -8,7 +8,7 @@ public class Ship {
    // for each square the ship is on, we must also store that square's state (hit/not hit)
    // when all of a ship's squares are hit, the ship dies
    protected ArrayList<ShipCell> location = new ArrayList<>();
-   private String name;
+   private final String name;
 
    // default constructor (will perhaps add random ship generation in here)
    public Ship() {
@@ -17,9 +17,8 @@ public class Ship {
       Ship.shipNumber += 1;
    }
 
-   public Ship(String name, ArrayList<ShipCell> location) {
-      this.location = location;
-      this.name = name;
+   public Ship(String name) {
+      this.name = "Ship " + name;
 
       Ship.shipNumber += 1;
    }

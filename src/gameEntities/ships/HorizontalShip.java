@@ -7,8 +7,8 @@ public class HorizontalShip extends Ship {
     public Character row;
     public ArrayList<Byte> columns = new ArrayList<>();
 
-    public HorizontalShip(Character row, ArrayList<Byte> columns) {
-        super();
+    public HorizontalShip(String name, Character row, ArrayList<Byte> columns) {
+        super(name);
 
         this.row = row;
         this.columns.addAll(columns);
