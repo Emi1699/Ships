@@ -1,13 +1,17 @@
 package gameEntities.ships;
 
+import exceptions.InvalidZoneIdException;
+import game.Updateable;
+import gameEntities.Zone;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class VerticalShip extends Ship {
+public class VerticalShip extends Ship implements Updateable {
     public Byte column;
     public ArrayList<Character> rows = new ArrayList<>();
 
-    public VerticalShip(Byte column, ArrayList<Character> rows) {
+    public VerticalShip(Byte column, ArrayList<Character> rows) throws InvalidZoneIdException {
         super();
 
         this.column = column;
@@ -15,7 +19,7 @@ public class VerticalShip extends Ship {
 
         // instantiate the ship's location
         for (Character row : this.rows) {
-            this.location.add(new ShipCell(row, this.column));
+            this.location.add(new ShipCell(Zone.createId(row, column)));
         }
 
         // useful when printing the position and state of the ship

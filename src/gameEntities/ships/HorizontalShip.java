@@ -1,21 +1,24 @@
 package gameEntities.ships;
 
+import exceptions.InvalidZoneIdException;
+import gameEntities.Zone;
+
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class HorizontalShip extends Ship {
     public Character row;
-    public ArrayList<Byte> columns = new ArrayList<>();
+    public ArrayList<Integer> columns = new ArrayList<>();
 
-    public HorizontalShip(String name, Character row, ArrayList<Byte> columns) {
+    public HorizontalShip(String name, Character row, ArrayList<Integer> columns) throws InvalidZoneIdException {
         super(name);
 
         this.row = row;
         this.columns.addAll(columns);
 
         // instantiate the ship's location
-        for (Byte column : this.columns) {
-            this.location.add(new ShipCell(this.row, column));
+        for (int column : this.columns) {
+            this.location.add(new ShipCell(Zone.createId(row, column)));
         }
     }
 
@@ -37,7 +40,7 @@ public class HorizontalShip extends Ship {
                 });
 
         shipToString.append("\n   ");
-        for (Byte column : this.columns) {
+        for (int column : this.columns) {
             shipToString.append(column).append(" ");
         }
 

@@ -1,8 +1,10 @@
 package gameEntities.ships;
 
+import game.Updateable;
+
 import java.util.ArrayList;
 
-public class Ship {
+public class Ship implements Updateable {
    private static int shipNumber = 1;
 
    // for each square the ship is on, we must also store that square's state (hit/not hit)
@@ -56,5 +58,10 @@ public class Ship {
       }
 
       return false;
+   }
+
+   @Override
+   public void update() {
+
    }
 }
