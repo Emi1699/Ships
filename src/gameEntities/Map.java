@@ -12,28 +12,21 @@ public class Map implements Updateable {
     // used to access the map's zones by their names
     private final ArrayList<Zone> zones = new ArrayList<>();
 
-    // create a new map
-    public Map() throws InvalidZoneIdException {
-        for (int row = 'A'; row < 'A' + Map.HEIGHT; row++) {
-            for (int column = 1; column <= Map.WIDTH; column++) {
-                zones.add(new Zone(row + Integer.toString(column)));
-            }
-        }
-    }
-
+    // create a new map of given size
     public Map(int width, int height) throws InvalidZoneIdException {
         Map.WIDTH = width;
         Map.HEIGHT = height;
 
         for (char row = 'A'; row < 'A' + Map.HEIGHT; row++) {
             for (int column = 1; column <= Map.WIDTH; column++) {
-                zones.add(new Zone(row + Integer.toString(column)));
+                this.zones.add(new Zone(row + Integer.toString(column)));
+//                System.out.println(row + Integer.toString(column));
             }
         }
     }
 
     public void getZones() {
-        int i = 1;
+        int i = 0;
         for (Zone zone : zones) {
             System.out.print(zone.getId() + " ");
             i++;
@@ -41,7 +34,7 @@ public class Map implements Updateable {
             // print a new line
             if (i == Map.WIDTH) {
                 System.out.println();
-                i = 1;
+                i = 0;
             }
         }
     }

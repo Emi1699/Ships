@@ -22,11 +22,16 @@ public class Zone {
         }
 
         this.row = id.charAt(0);
-        int column = Integer.parseInt(id.substring(1));
+        this.column = Integer.parseInt(id.substring(1));
+        this.id = id;
     }
 
     public String getId() {
         return this.id;
+    }
+
+    public Character getRow() {
+        return this.row;
     }
 
     public static String createId(char row, int column) {
