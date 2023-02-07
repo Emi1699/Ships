@@ -1,2 +1,5 @@
-package game;public interface TurnBased {
+package game;
+
+public interface Updateable {
+    void update();
 }
