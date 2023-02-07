@@ -4,6 +4,7 @@ import exceptions.InvalidZoneIdException;
 import game.Updateable;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Map implements Updateable {
     private static int WIDTH; // number of horizontal cells (bytes)
@@ -25,10 +26,24 @@ public class Map implements Updateable {
         }
     }
 
-    public void getZones() {
+    public ArrayList<Zone> getZones() {
+        return this.zones;
+    }
+
+    public Zone getZoneById(String Id) {
+        for (Zone zone : this.zones) {
+            if (Objects.equals(zone.getId(), Id)) {
+                return zone;
+            }
+        }
+
+        return null;
+    }
+
+    public void displayMap() {
         int i = 0;
         for (Zone zone : zones) {
-            System.out.print(zone.getId() + " ");
+            System.out.print(zone.getSymbol() + " ");
             i++;
 
             // print a new line

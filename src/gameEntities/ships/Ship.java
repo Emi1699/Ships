@@ -3,8 +3,11 @@ package gameEntities.ships;
 import game.Updateable;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class Ship implements Updateable {
+
+   // holds number of ships create during the program's lifetime
    private static int shipNumber = 1;
 
    // for each square the ship is on, we must also store that square's state (hit/not hit)
@@ -23,6 +26,16 @@ public class Ship implements Updateable {
       this.name = "Ship " + name;
 
       Ship.shipNumber += 1;
+   }
+
+   public ShipCell getShipCellById(String Id) {
+      for (ShipCell shipCell : this.location) {
+         if (Objects.equals(shipCell.getId(), Id)) {
+            return shipCell;
+         }
+      }
+
+      return null;
    }
 
    @Override
