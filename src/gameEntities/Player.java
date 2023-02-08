@@ -8,17 +8,20 @@ import java.util.ArrayList;
 
 public class Player {
     private String name;
-    private Ship ship = new Ship("Rosa");
+    private ArrayList<Ship> ships = new ArrayList<>();
 
     public Player() throws InvalidZoneIdException {
-        this.setShipLocation();
+        this.createShip();
     }
-    public void setShipLocation() throws InvalidZoneIdException {
+    public void createShip() throws InvalidZoneIdException {
         ArrayList<ShipCell> shipLocation = new ArrayList<>();
         shipLocation.add(new ShipCell("A1"));
         shipLocation.add(new ShipCell("A2"));
         shipLocation.add(new ShipCell("A3"));
-        this.ship.setLocation(shipLocation);
+
+        Ship ship = new Ship(shipLocation);
+
+        this.ships.add(ship);
     }
 
     public String getName() {
@@ -29,11 +32,7 @@ public class Player {
         this.name = name;
     }
 
-    public Ship getShip() {
-        return ship;
-    }
-
-    public void setShip(Ship ship) {
-        this.ship = ship;
+    public ArrayList<Ship> getShips() {
+        return this.ships;
     }
 }

@@ -4,57 +4,49 @@ import game.Updateable;
 
 import java.util.ArrayList;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 public class Ship implements Updateable {
-
-   // holds number of ships create during the program's lifetime
-   private static int shipNumber = 1;
-
-   // for each square the ship is on, we must also store that square's state (hit/not hit)
-   // when all of a ship's squares are hit, the ship dies
-   protected ArrayList<ShipCell> location = new ArrayList<>();
-   private final String name;
+   
+   // array containing each cell the ship is formed of
+   protected ArrayList<ShipCell> cells;
 
    // default constructor (will perhaps add random ship generation in here)
-   public Ship() {
-      this.name = "Ship#" + Ship.shipNumber;
-
-      Ship.shipNumber += 1;
+   public Ship(ArrayList<ShipCell> cells) {
+      this.cells = cells;
    }
 
-   public Ship(String name) {
-      this.name = "Ship " + name;
-
-      Ship.shipNumber += 1;
-   }
-
-   public ShipCell getShipCellById(String Id) {
-      for (ShipCell shipCell : this.location) {
-         if (Objects.equals(shipCell.getId(), Id)) {
-            return shipCell;
+   public ShipCell getCellById(String Id) {
+      for (ShipCell cell : this.cells) {
+         if (Objects.equals(cell.getId(), Id)) {
+            return cell;
          }
       }
 
       return null;
    }
 
+   public ArrayList<String> getAllCellsIds() {
+      return this.cells.stream().map(ShipCell::getId).collect(Collectors.toCollection(ArrayList::new));
+   }
+
    @Override
    public String toString() {
-      return this.name + " is @: ";
+      return this + " is @: ";
    }
 
    // getter
-   public ArrayList<ShipCell> getLocation() {
-      return location;
+   public ArrayList<ShipCell> getCells() {
+      return this.cells;
    }
 
    // setter
-   public void setLocation(ArrayList<ShipCell> location) {
-      this.location = location;
+   public void setCells(ArrayList<ShipCell> location) {
+      this.cells = location;
    }
 
    public boolean isDead() {
-      for (ShipCell shipZone : this.location) {
+      for (ShipCell shipZone : this.cells) {
          if (shipZone.alive) {
             return false;
          }
@@ -64,8 +56,8 @@ public class Ship implements Updateable {
    }
 
    public boolean isAlive() {
-      for (ShipCell shipZone : this.location) {
-         if (shipZone.alive) {
+      for (ShipCell cell : this.cells) {
+         if (cell.alive) {
             return true;
          }
       }

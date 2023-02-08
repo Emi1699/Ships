@@ -2,11 +2,10 @@ package game;
 
 import exceptions.InvalidZoneIdException;
 import gameEntities.*;
-import gameEntities.ships.ShipCell;
+import gameEntities.ships.Ship;
 
-import javax.rmi.ssl.SslRMIClientSocketFactory;
 import java.util.ArrayList;
-import java.util.stream.Collectors;
+
 
 public class Game implements Updateable {
     Map map;
@@ -18,24 +17,30 @@ public class Game implements Updateable {
     }
 
     public void displayMap() {
-        ArrayList<String> shipZoneIds = player.getShip().getLocation().stream().map(ShipCell::getId).collect(Collectors.toCollection(ArrayList::new));
+        // get a list of all the player's ships' Id's
+        ArrayList<String> shipZoneIds = new ArrayList<>();
+        for (Ship ship : this.player.getShips()) {
+            shipZoneIds.addAll(ship.getAllCellsIds());
+        }
 
+        // for every zone on the Map
         for (Zone mapZone : this.map.getZones()) {
+            // if the zone's ID matches on of the IDs in the shipZoneIds
+                // it means that cell is part of a ship, so we check its status (hit / not-hit
+                    // if hit, that cell's symbol becomes 'x'
+                    // if not hit, that cell's symbol becomes 'o'
+
+            // if not, it means the Id is part of the map
+
+
             if (shipZoneIds.contains(mapZone.getId())) {
-                if (this.player.getShip().getShipCellById(mapZone.getId()).alive) {
-                    mapZone.setSymbol('o');
-                } else {
-                    mapZone.setSymbol('x');
-                }
-            } else {
-                mapZone.setSymbol('m');
+               System.out.println(this.player.getShips().stream().map(ship -> ship.getCellById(mapZone.getId())).count());
             }
         }
 
         map.displayMap();
+
     }
-
-
 
     @Override
     public void update() {
